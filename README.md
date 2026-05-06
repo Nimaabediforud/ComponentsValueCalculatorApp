@@ -22,21 +22,21 @@ This repository is designed as a **flexible, expandable framework**:
 - Rate limiting, help command, result action buttons
 - Works on **Telegram** and **Bale** (Iranian platform) with a simple API change
 
-## Commands (So far)
+## 💣 Commands (So far)
 
 | Command | Description |
 |---------|-------------|
 | `/start` | Start the bot and select a component |
 | `/help`  | Show help message |
 
-## Usage
+## ⚙ Usage
 
 1. Send `/start`
 2. Choose component (Resistor, or any)
 3. Choose subtype (DIP or SMD)
 4. Enter the color bands (e.g., `brown-black-red-gold`) or SMD label (e.g., `103` or `4R7`)
 
-## Example
+## 💡 Example
 
 **DIP:**  
 Input: `brown-black-red-gold`  
