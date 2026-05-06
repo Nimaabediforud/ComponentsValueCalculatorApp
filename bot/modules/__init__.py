@@ -1,4 +1,4 @@
-from .resistor import ResistorComponent
+from .components import ResistorComponent
 
 COMPONENTS = {
     "resistor": ResistorComponent(),
