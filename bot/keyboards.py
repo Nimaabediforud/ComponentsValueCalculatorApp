@@ -16,7 +16,7 @@ def get_subtype_keyboard(component):
     subtypes = ["DIP", "SMD"]
     for subtype in subtypes:
         keyboard.add(types.InlineKeyboardButton(subtype, callback_data=f"Select_subtype:{component}:{subtype}"))
-    keyboard.add(types.InlineKeyboardButton("Back", callback_data="Back_to_components"))
+    keyboard.add(types.InlineKeyboardButton("< Back", callback_data="Back_to_components"))
     return keyboard
 
 def get_result_keyboard():

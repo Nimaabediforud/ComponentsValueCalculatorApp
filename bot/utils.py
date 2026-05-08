@@ -8,7 +8,7 @@ from collections import defaultdict
 #-------------------
 
 welcome_msg = """
-    📟 *Hey there! Please select your component*
+    📟 *Please select your component*
     For now only - *Resistor* - is available but other components will be added soon too.
     *Need help?* Send /help to learn how to use this Bot!
     """
@@ -29,17 +29,17 @@ def send_help_message(chat_id: int, bot: TeleBot):
     📟 *Components Value Calculator Bot*
 
     *Commands:*
-    /start     – Start the bot and show main menu
-    /help      – Show this help message
-    /saved     – List your saved calculation results
+    /start – Start the bot and show main menu
+    /help – Show this help message
+    /saved – List your saved calculation results
     /clear_saved – Delete all your saved results
 
     *Persistent Menu (buttons below text input):*
-    📋 My Saved     – Same as /saved
+    📋 My Saved – Same as /saved
     🗑️ Clear All Saved – Same as /clear_saved
-    ❓ Help         – This message
-    🧮 New Calc    – Start a new calculation
-    ✅ Start       – Same as /start
+    ❓ Help – This message
+    🧮 New Calc – Start a new calculation
+    ✅ Start – Same as /start
 
     *How to calculate:*
     1. Choose a component (Resistor, etc.)
@@ -50,7 +50,7 @@ def send_help_message(chat_id: int, bot: TeleBot):
     Use inline buttons to New, Save, or get Help.
 
     *Examples:*
-    DIP: `brown-black-red-gold` → 1 kΩ ±5%
+    DIP: `brown-black-red-gold` → 1 kΩ ± 5%
     SMD: `103` → 10 kΩ
 
     Send /start to begin.

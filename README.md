@@ -4,6 +4,8 @@
 ![License](https://img.shields.io/github/license/Nimaabediforud/Heart-Disease-Prediction)
 ![Status](https://img.shields.io/badge/Status-Ongoing-success?style=flat-square)
 
+![Banner](images/Banner.jpg)
+
 ---
 
 A **multi‑platform electronic component calculator** – starting with resistors. The core logic is separated from the interface, allowing easy expansion to other components and platforms.

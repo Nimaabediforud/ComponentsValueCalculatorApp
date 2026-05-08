@@ -18,7 +18,7 @@ class BotHandlers:
         kb.add(KeyboardButton("✅ Start"))
         kb.add(KeyboardButton("📋 My Saved"), KeyboardButton("❓ Help"))
         kb.add(KeyboardButton("🗑️ Clear All Saved"), KeyboardButton("🧮 New Calc"))
-        self.bot.send_message(chat_id, "Menu Opened as well!", reply_markup=kb)
+        self.bot.send_message(chat_id, "*Hey there! 🙂👋🏻*", reply_markup=kb)
 
     # ---------- Command Logic (shared) ----------
     def cmd_saved(self, chat_id):
@@ -47,22 +47,24 @@ class BotHandlers:
         @self.bot.message_handler(commands=["start"])
         def send_welcome(message):
             user_data[message.chat.id] = {}
-            self.bot.reply_to(message, welcome_msg, reply_markup=get_component_keyboard())
             self.show_main_menu(message.chat.id)
-            
-        
+            self.bot.reply_to(message, welcome_msg, reply_markup=get_component_keyboard())
 
         @self.bot.message_handler(commands=["help"])
         def send_help(message):
             self.cmd_help(message.chat.id)
+
+        @self.bot.message_handler(commands=["saved"])
+        def saved_cmd(message):
+            self.cmd_saved(message.chat.id)
 
         # ---- Reply Keyboard Handlers (friendly text ➔ command) ----
         @self.bot.message_handler(func=lambda m: m.text == "✅ Start")
         def on_start_btn(m):
             # Reuse /start logic
             user_data[m.chat.id] = {}
-            self.bot.reply_to(m, welcome_msg, reply_markup=get_component_keyboard())
             self.show_main_menu(m.chat.id)
+            self.bot.reply_to(m, welcome_msg, reply_markup=get_component_keyboard())
         
         @self.bot.message_handler(func=lambda m: m.text == "📋 My Saved")
         def on_my_saved(m):
@@ -91,7 +93,7 @@ class BotHandlers:
             user_data[chat_id] = {"component": component}
             self.bot.edit_message_text(
                 chat_id=chat_id, message_id=msg_id,
-                text=f"{component} selected. Choose subtype:",
+                text=f"{component.upper()} selected. Choose subtype:",
                 reply_markup=get_subtype_keyboard(component)
             )
             self.bot.answer_callback_query(call.id)
@@ -116,7 +118,8 @@ class BotHandlers:
             user_data[chat_id]["subtype"] = subtype
             self.bot.edit_message_text(
                 chat_id=chat_id, message_id=msg_id,
-                text=f"{subtype} selected for {component}. Enter value:\nDIP: brown-black-red-gold\nSMD: 103",
+                text=f"""{subtype} selected for {component.upper()}. Enter your value:
+                *Hint:*\n\tDIP: `brown-black-red-gold` → 1 kΩ ± 5%\n\tSMD: `103` → 10 kΩ""",
                 reply_markup=None
             )
             self.bot.answer_callback_query(call.id)
@@ -140,8 +143,10 @@ class BotHandlers:
                         self.bot.answer_callback_query(call.id, "✅ Saved!", show_alert=False)
                 else:
                     self.bot.answer_callback_query(call.id, "Nothing to save.", show_alert=True)
-            
-            self.bot.answer_callback_query(call.id)
+
+            elif action == "help":
+                self.cmd_help(chat_id)
+                self.bot.answer_callback_query(call.id)
 
         # ---- Value Input Handler ----
         @self.bot.message_handler(func=lambda m: m.chat.id in user_data and
