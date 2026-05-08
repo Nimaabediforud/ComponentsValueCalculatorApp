@@ -1,4 +1,3 @@
-# bot/handlers.py
 from telebot import TeleBot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from keyboards import get_component_keyboard, get_subtype_keyboard, get_result_keyboard

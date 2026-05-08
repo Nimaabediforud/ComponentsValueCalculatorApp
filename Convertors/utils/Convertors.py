@@ -2,7 +2,7 @@ from .utilities import Validate
 
 class Resistor:
     """
-    A class to calculate resistance value based on color bands code on the resistor components
+    A class to encode color band and label of resistors to calculate resistance value and interpret them
     """
 
     # All colors used for value and decimal multiplier
@@ -114,13 +114,13 @@ class Resistor:
 
         # Messages in case of invalidation
         if check_1:
-            return f"## The first {num1} bands must not be COLORLESS!", band
+            return f"The first {num1} bands must not be COLORLESS!", band
         if check_2:
-            return f"## The first {num2} bands can not be GOLD or SILVER!", band
+            return f"The first {num2} bands can not be GOLD or SILVER!", band
         if check_3:
-            return f"## The correspondent band to tolerance ({num3} band) is incorrect!", band
+            return f"The correspondent band to tolerance ({num3} band) is incorrect!", band
         if check_4:
-            return "## The correspondent band to temperature coefficient is incorrect!", band
+            return "The correspondent band to temperature coefficient is incorrect!", band
         
         return False
         
