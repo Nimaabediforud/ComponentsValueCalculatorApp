@@ -1,5 +1,11 @@
 # 🔧 ComponentsValueCalculatorApp
 
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python&logoColor=white)
+![License](https://img.shields.io/github/license/Nimaabediforud/Heart-Disease-Prediction)
+![Status](https://img.shields.io/badge/Status-Ongoing-success?style=flat-square)
+
+---
+
 A **multi‑platform electronic component calculator** – starting with resistors. The core logic is separated from the interface, allowing easy expansion to other components and platforms.
 
 ## 🎯 Project Vision
@@ -54,7 +60,7 @@ This repository is designed as a **flexible, expandable framework**:
 
 **DIP:**  
 Input: `brown-black-red-gold`  
-Output: `1000 Ω ± 5%`
+Output: `1 kΩ ± 5%`
 
 **SMD:**  
 Input: `103`  
