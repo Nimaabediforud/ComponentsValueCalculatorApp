@@ -9,7 +9,7 @@ This repository is designed as a **flexible, expandable framework**:
 - **Core engine** – `convertors/` module (resistor decoder, room for capacitors, inductors, etc.)
 - **Interfaces** – Currently a **Telegram/Bale bot**; a website or mobile app can be added later in separate folders.
 
-## ✨ Current Features (Resistor Module)
+## ✨ Current Features
 
 ### Core Engine (`convertors/`)
 - Decodes DIP resistors (3, 4, 5, 6 bands)
@@ -19,23 +19,36 @@ This repository is designed as a **flexible, expandable framework**:
 
 ### Bot Interface (`bot/`)
 - **Modular, registry‑based design** – easy to add new components
-- Inline keyboard navigation (component → subtype → input)
-- Rate limiting, help command, result action buttons
+- **Inline keyboards** – component selection, subtype, result actions (New Calculation, Save, Help)
+- **Persistent reply keyboard (main menu)** – buttons for My Saved, Help, Clear All Saved, New Calc, Start
+- **SQLite database** – users table, saved results table, duplicate prevention
+- **Rate limiting** – prevents spam
+- **Save & recall** – save calculation results, list them with `/saved`, clear with `/clear_saved`
 - Works on **Telegram** and **Bale** (Iranian platform) with a simple API change
 
-## 💬 Commands
+## 💬 Commands & Buttons
 
 | Command | Description |
 |---------|-------------|
-| `/start` | Start the bot and select a component |
-| `/help`  | Show help message |
+| `/start` | Start the bot and show main menu |
+| `/help`  | Show detailed help |
+| `/saved` | List your saved calculation results |
+| `/clear_saved` | Delete all your saved results |
+
+**Persistent menu buttons** (appear above keyboard after `/start`):
+- 📋 My Saved → `/saved`
+- ❓ Help → `/help`
+- 🗑️ Clear All Saved → `/clear_saved`
+- 🧮 New Calc → Start a new calculation
+- ✅ Start → Same as `/start`
 
 ## ⚙️ Usage
 
-1. Send `/start`
+1. Send `/start` (or tap ✅ Start)
 2. Choose a component (Resistor – more coming soon)
 3. Choose subtype (DIP or SMD)
 4. Enter the color bands (e.g., `brown-black-red-gold`) or SMD label (e.g., `103` or `4R7`)
+5. After result, use inline buttons to **New** (start over), **Save** (store in database), or **Help**
 
 ## 💡 Example
 
@@ -47,27 +60,30 @@ Output: `1000 Ω ± 5%`
 Input: `103`  
 Output: `10 kΩ`
 
-## 📁 Project Structure (Current)
+## 📁 Project Structure
 
 ```
 ComponentsValueCalculatorApp/
 ├── convertors/ # Core calculation engine
 │ ├── notebook/
-│ │ └── Prototyping.ipynb # Initial experiments
+│ │ └── Prototyping.ipynb
 │ └── utils/
-│ ├── Convertors.py # Resistor logic (class Resistor)
-│ ├── utilities.py # Helper functions (Validate class)
-│ └── main.py # (optional test script)
+│ ├── Convertors.py # Resistor class
+│ ├── utilities.py # Validate class
+│ └── main.py
 ├── bot/ # Bot interface
 │ ├── main.py # Entry point
-│ ├── handlers.py # Class‑based handlers (BotHandlers)
-│ ├── keyboards.py # Inline keyboards (generic)
-│ ├── utils.py # Rate limiter, helpers, welcome message
-│ ├── state.py # In‑memory user_data dict
+│ ├── handlers.py # BotHandlers class (all logic)
+│ ├── keyboards.py # Inline keyboards
+│ ├── utils.py # Rate limiter, help, welcome message
+│ ├── state.py # In-memory user_data
 │ ├── config.py # Tokens (gitignored)
+│ ├── database/
+│ │ ├── init.py
+│ │ └── db.py # SQLite helpers
 │ └── modules/
-│ ├── init.py # COMPONENTS registry, get_component()
-│ └── components.py # All component classes (ResistorComponent, etc.)
+│ ├── init.py # Registry, get_component()
+│ └── components.py # ResistorComponent (others in future)
 ├── requirements.txt
 └── README.md
 ```
@@ -75,5 +91,4 @@ ComponentsValueCalculatorApp/
 ## 📄 License
 
 MIT
-
 

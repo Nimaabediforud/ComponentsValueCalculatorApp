@@ -29,22 +29,31 @@ def send_help_message(chat_id: int, bot: TeleBot):
     📟 *Components Value Calculator Bot*
 
     *Commands:*
-    /start - Start the bot and select component
-    /help - Show this help message
+    /start     – Start the bot and show main menu
+    /help      – Show this help message
+    /saved     – List your saved calculation results
+    /clear_saved – Delete all your saved results
 
-    *How to use:*
-    1. Select component (Resistor)
+    *Persistent Menu (buttons below text input):*
+    📋 My Saved     – Same as /saved
+    🗑️ Clear All Saved – Same as /clear_saved
+    ❓ Help         – This message
+    🧮 New Calc    – Start a new calculation
+    ✅ Start       – Same as /start
+
+    *How to calculate:*
+    1. Choose a component (Resistor, etc.)
     2. Choose subtype (DIP or SMD)
-    3. Enter color bands or label
+    3. Enter color bands (e.g., brown-black-red-gold) or SMD code (e.g., 103)
+
+    *After a result:*
+    Use inline buttons to New, Save, or get Help.
 
     *Examples:*
-    • DIP: `brown-black-red-gold`
-    • SMD: `103` or `4R7` or `2210`
-
-    *Supported:* 3-6 band DIP resistors, 3-4 digit SMD resistors with R and tolerance letters.
+    DIP: `brown-black-red-gold` → 1 kΩ ±5%
+    SMD: `103` → 10 kΩ
 
     Send /start to begin.
     """
     bot.send_message(chat_id, help_text, parse_mode="Markdown")
-
 

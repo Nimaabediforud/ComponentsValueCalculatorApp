@@ -21,7 +21,7 @@ def get_subtype_keyboard(component):
 
 def get_result_keyboard():
     keyboard = types.InlineKeyboardMarkup()
-    btns = [("🔄 New Calculation", "new"), ("❓ Help", "help")]
+    btns = [("🔄 New Calc", "new"), ("❓ Help", "help"), ("💾 Save", "save")]
     for label, action in btns:
         keyboard.add(types.InlineKeyboardButton(label, callback_data=f"action:{action}"))
     return keyboard

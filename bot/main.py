@@ -9,7 +9,10 @@ which here it is our case.
 from telebot import TeleBot
 from config import BOT_Bale_TOKEN, BOT_TEL_TOKEN
 from handlers import BotHandlers
+from database.db import init_db
 
+# Initialize the database
+init_db()
 
 # Bot's token
 bot = TeleBot(token=BOT_Bale_TOKEN)
@@ -19,3 +22,4 @@ if __name__ == "__main__":
     print("Bot running...")
     bot.infinity_polling()
 
+# NIMA ABEDI FORUD #
